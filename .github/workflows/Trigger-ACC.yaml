@@ -1,0 +1,24 @@
+name: Trigger Call ACC API
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+jobs:
+  trigger_api:
+    runs-on: ubuntu-latest
+    env:
+      DOMEINNAAM: ${{ secrets.DOMEINNAAM_ACC }}
+      INLOG: ${{ secrets.INLOG }}
+      WACHTWOORD: ${{ secrets.WACHTWOORD_ACC }}
+      APP: ${{ secrets.APP }}
+      ENDPOINT: ${{ secrets.ENDPOINT_ACC }}
+    steps:
+     
+      - name: Trigger Call ACC
+        run: |
+          curl -v -X POST \
+            -u "${INLOG}:${WACHTWOORD}" \
+            -H "OCS-APIRequest: true" \
+            "https://${DOMEINNAAM}/index.php/apps/${APP}${ENDPOINT}"
