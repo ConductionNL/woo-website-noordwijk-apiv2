@@ -1,4 +1,4 @@
-name: Trigger Call ACC API
+name: Trigger Call API
 
 on:
   schedule:
