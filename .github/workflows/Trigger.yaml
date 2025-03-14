@@ -2,7 +2,7 @@ name: Trigger Call API
 
 on:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -11,14 +11,11 @@ jobs:
     env:
       DOMEINNAAM: ${{ secrets.DOMEINNAAM }}
       INLOG: ${{ secrets.INLOG }}
-      WACHTWOORD: ${{ secrets.WACHTWOORD}}
+      WACHTWOORD: ${{ secrets.WACHTWOORD }}
       APP: ${{ secrets.APP }}
       ENDPOINT: ${{ secrets.ENDPOINT }}
     steps:
-     
-      - name: Trigger Call ACC
+      - name: Trigger Call
         run: |
-          curl -v -X POST \
-            -u "${INLOG}:${WACHTWOORD}" \
-            -H "OCS-APIRequest: true" \
-            "https://${DOMEINNAAM}/index.php/apps/${APP}${ENDPOINT}"
+          echo "Triggering API call at: https://${DOMEINNAAM}/index.php/apps/${APP}${ENDPOINT}"
+          curl -X POST -u "${INLOG}:${WACHTWOORD}" "https://${DOMEINNAAM}/index.php/apps/${APP}${ENDPOINT}"
