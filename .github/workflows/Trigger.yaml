@@ -17,5 +17,5 @@ jobs:
     steps:
       - name: Trigger Call
         run: |
-          echo "Triggering API call at: https://${DOMEINNAAM}/index.php/apps/${APP}${ENDPOINT}"
+          echo "Triggering API call at: https://${DOMEINNAAM}/apps/${APP}${ENDPOINT}"
           curl -X POST -u "${INLOG}:${WACHTWOORD}" "https://${DOMEINNAAM}/index.php/apps/${APP}${ENDPOINT}"
